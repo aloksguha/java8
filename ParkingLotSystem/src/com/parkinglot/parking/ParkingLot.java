@@ -31,10 +31,15 @@ public class ParkingLot {
 	
 	
 	public ParkingRecipt placeVehicle(Vehicle vehicle) throws Exception {
-		ParkingSpot spot =  this.parkingSpaces.pop();
-		ParkingRecipt recipt = spot.parkVehicle(vehicle);
-		parkingMap.put(recipt, spot);
-		return recipt;
+		if(this.parkingSpaces.size() > 0) {
+			ParkingSpot spot =  this.parkingSpaces.pop();
+			ParkingRecipt recipt = spot.parkVehicle(vehicle);
+			parkingMap.put(recipt, spot);
+			return recipt;
+		}else {
+			throw new Exception("Parking Full");
+		}
+		
 	}
 
 	
